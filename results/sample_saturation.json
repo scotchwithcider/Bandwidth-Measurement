@@ -1,0 +1,108 @@
+{
+  "mode": "saturation_scan",
+  "threshold": 0.1,
+  "saturation_connections": 4,
+  "estimated_max_bandwidth_mbps": 7151.675,
+  "estimated_max_bandwidth_MBps": 852.546,
+  "scan_results": [
+    {
+      "test_id": "bwtest-20260420T151322.358633Z",
+      "mode": "saturation_scan",
+      "parallel_connections": 1,
+      "configured_total_bytes": 33554432,
+      "measured_total_bytes": 29360128,
+      "aggregate_duration_seconds": 0.039518,
+      "aggregate_throughput_mbps": 5943.647,
+      "aggregate_throughput_MBps": 708.538,
+      "per_connection_results": [
+        {
+          "connection_index": 0,
+          "duration_seconds": 0.039518000005045906,
+          "measured_bytes": 29360128,
+          "measured_start_perf": 80064.0611143,
+          "measured_end_perf": 80064.1006323,
+          "throughput_mbps": 5943.646540057922,
+          "throughput_MBps": 708.5378813812639
+        }
+      ]
+    },
+    {
+      "test_id": "bwtest-20260420T151322.402112Z",
+      "mode": "saturation_scan",
+      "parallel_connections": 2,
+      "configured_total_bytes": 33554432,
+      "measured_total_bytes": 29360128,
+      "aggregate_duration_seconds": 0.032843,
+      "aggregate_throughput_mbps": 7151.675,
+      "aggregate_throughput_MBps": 852.546,
+      "per_connection_results": [
+        {
+          "connection_index": 0,
+          "duration_seconds": 0.03245410000090487,
+          "measured_bytes": 14680064,
+          "measured_start_perf": 80064.1110413,
+          "measured_end_perf": 80064.1434954,
+          "throughput_mbps": 3618.6648835347632,
+          "throughput_MBps": 431.3784698885397
+        },
+        {
+          "connection_index": 1,
+          "duration_seconds": 0.030825699999695644,
+          "measured_bytes": 14680064,
+          "measured_start_perf": 80064.1106526,
+          "measured_end_perf": 80064.1414783,
+          "throughput_mbps": 3809.824659331647,
+          "throughput_MBps": 454.16649095197283
+        }
+      ]
+    },
+    {
+      "test_id": "bwtest-20260420T151322.454742Z",
+      "mode": "saturation_scan",
+      "parallel_connections": 4,
+      "configured_total_bytes": 33554432,
+      "measured_total_bytes": 29360128,
+      "aggregate_duration_seconds": 0.034399,
+      "aggregate_throughput_mbps": 6828.155,
+      "aggregate_throughput_MBps": 813.98,
+      "per_connection_results": [
+        {
+          "connection_index": 0,
+          "duration_seconds": 0.03303990000858903,
+          "measured_bytes": 7340032,
+          "measured_start_perf": 80064.1518542,
+          "measured_end_perf": 80064.1848941,
+          "throughput_mbps": 1777.2528362596474,
+          "throughput_MBps": 211.86504796262352
+        },
+        {
+          "connection_index": 1,
+          "duration_seconds": 0.027665600006002933,
+          "measured_bytes": 7340032,
+          "measured_start_perf": 80064.1513132,
+          "measured_end_perf": 80064.1789788,
+          "throughput_mbps": 2122.500722458894,
+          "throughput_MBps": 253.02180319534466
+        },
+        {
+          "connection_index": 2,
+          "duration_seconds": 0.02937709999969229,
+          "measured_bytes": 7340032,
+          "measured_start_perf": 80064.152008,
+          "measured_end_perf": 80064.1813851,
+          "throughput_mbps": 1998.8445421983472,
+          "throughput_MBps": 238.28083779792155
+        },
+        {
+          "connection_index": 3,
+          "duration_seconds": 0.03276690001075622,
+          "measured_bytes": 7340032,
+          "measured_start_perf": 80064.1529452,
+          "measured_end_perf": 80064.1857121,
+          "throughput_mbps": 1792.0601576812032,
+          "throughput_MBps": 213.63021822943725
+        }
+      ]
+    }
+  ]
+}

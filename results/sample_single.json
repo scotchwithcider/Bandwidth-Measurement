@@ -1,0 +1,21 @@
+{
+  "test_id": "bwtest-20260420T154444.995378Z",
+  "mode": "single",
+  "parallel_connections": 1,
+  "configured_total_bytes": 33554432,
+  "measured_total_bytes": 29360128,
+  "aggregate_duration_seconds": 0.041949,
+  "aggregate_throughput_mbps": 5599.218,
+  "aggregate_throughput_MBps": 667.479,
+  "per_connection_results": [
+    {
+      "connection_index": 0,
+      "duration_seconds": 0.04194890000508167,
+      "measured_bytes": 29360128,
+      "measured_start_perf": 81946.7001302,
+      "measured_end_perf": 81946.7420791,
+      "throughput_mbps": 5599.217714208158,
+      "throughput_MBps": 667.4787657509039
+    }
+  ]
+}
