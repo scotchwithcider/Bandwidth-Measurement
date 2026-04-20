@@ -77,6 +77,10 @@ The client can optionally run a stepped scan across increasing connection counts
 
 This turns the project from a raw measurement script into a lightweight analysis tool: it not only measures throughput, but also estimates when the network path is effectively saturated.
 
+The Results folder -
+Note:
+This result was obtained on localhost, which leads to very high throughput due to minimal network overhead. Real-world measurements over remote networks will be significantly lower and affected by latency, congestion, and server limits.
+
 ## How To Run
 
 ### Start the server
