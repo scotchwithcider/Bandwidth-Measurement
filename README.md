@@ -12,6 +12,7 @@ The tool supports:
 - High-resolution timing using `time.perf_counter()`
 - Large application and socket buffers
 - Single-connection and parallel-connection modes
+- Automatic saturation detection to identify where additional parallelism stops improving throughput
 - Structured logging to JSON Lines or CSV
 
 ## Project Structure
@@ -70,6 +71,12 @@ This keeps the data phase simple and lets the server know exactly how many warm-
 
 Parallel mode opens multiple independent TCP flows. Each worker thread performs its own socket setup, warm-up, transfer, and result logging. Aggregate throughput is computed using total measured bytes divided by the overall wall-clock duration of the parallel test.
 
+### 6. Saturation detection heuristic
+
+The client can optionally run a stepped scan across increasing connection counts such as `1, 2, 4, 8`. After each run it compares aggregate throughput against the previous step. When the relative gain falls below a configurable threshold, the client reports that connection count as the saturation point.
+
+This turns the project from a raw measurement script into a lightweight analysis tool: it not only measures throughput, but also estimates when the network path is effectively saturated.
+
 ## How To Run
 
 ### Start the server
@@ -88,6 +95,12 @@ python client.py --host 127.0.0.1 --port 5001 --size 100MiB --warmup 4MiB --para
 
 ```bash
 python client.py --host 127.0.0.1 --port 5001 --size 256MiB --warmup 4MiB --parallel 4 --log client_results.csv --verbose
+```
+
+### Run a saturation scan
+
+```bash
+python client.py --host 127.0.0.1 --port 5001 --size 128MiB --warmup 4MiB --scan-saturation --max-parallel 8 --saturation-threshold 0.05 --log client_results.jsonl
 ```
 
 ## Command-Line Options
@@ -109,6 +122,9 @@ python client.py --host 127.0.0.1 --port 5001 --size 256MiB --warmup 4MiB --para
 - `--chunk-size`: application send chunk size
 - `--socket-buffer`: requested socket buffer size in bytes
 - `--parallel`: number of parallel TCP connections
+- `--scan-saturation`: run automatic stepped tests to detect saturation
+- `--max-parallel`: maximum connection count to test during saturation scans
+- `--saturation-threshold`: minimum relative throughput gain required before higher parallelism is considered worthwhile
 - `--log`: output file path, `.jsonl` or `.csv`
 - `--verbose`: print per-connection summaries
 
@@ -196,6 +212,21 @@ Expected behavior when running the tool:
 - Warm-up generally lowers the risk of inflated results.
 - On localhost or very fast LANs, Python overhead may become a visible part of the measurement.
 - Parallel mode may improve aggregate throughput, especially when one flow cannot fill the path alone.
+- Saturation detection usually identifies the point where additional connections only provide marginal gains.
+
+## Saturation Scan Example
+
+Example human-readable output:
+
+```text
+Saturation scan results:
+Connections: 1 -> 12.0 Mbps (1.43 MB/s)
+Connections: 2 -> 22.0 Mbps (2.62 MB/s)
+Connections: 4 -> 38.0 Mbps (4.53 MB/s)
+Connections: 8 -> 40.0 Mbps (4.77 MB/s)
+Network saturation reached at 8 connections
+Estimated max bandwidth: ~40.0 Mbps
+```
 
 ## Limitations
 
